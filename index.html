@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My weather app</title>
+    <link rel="stylesheet" href="src/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <script src="src/script.js" defer></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="container app">
+      <div class="row">
+        <div class="first-col col-sm-4">
+          <div class="row">
+            <div class="col-md-7">
+              <div class="city-info container">
+                <h2>
+                  <em><strong>London</strong></em>
+                </h2>
+                <h5><span id="day"> </span> <span id="time"> </span></h5>
+                <h5 id="description"></h5>
+              </div>
+              <div class="container">
+                <p class="first-col-p">Precipitation: 19%</p>
+                <p class="first-col-p">
+                  Humidity: <span id="humidity"></span>%
+                </p>
+                <p class="first-col-p">Wind: <span id="wind"></span>Km/h</p>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <span id="temp"> </span
+              ><span id="temp-transfer"
+                ><a class="cLink" href="#"> C</a>|<a class="fLink" href="#"
+                  >F</a
+                ></span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="second-col col-sm-4">
+          <img src="images/rain.gif" class="head-img" />
+          <div class="row">
+            <div class="col-md-6 temp" id="max-temp"></div>
+            <div class="col-md-6 temp" id="min-temp"></div>
+          </div>
+        </div>
+        <div class="third-col col-sm-4">
+          <form class="container">
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="please enter a city"
+              />
+            </div>
+            <div class="container">
+              <input type="submit" class="btn btn-primary submit-city" />
+              <br /><br />
+              <button class="btn btn-success my-city">My city</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <hr />
+
+      <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-2 days">
+          <h5>Wed</h5>
+          <img src="images/torrential-rain.gif" class="days-icons" />
+          <div class="row">
+            <div class="col-md-6">
+              <strong class="temp-days">15°</strong>
+            </div>
+            <div class="col-md-6 temp-days">7°</div>
+          </div>
+        </div>
+        <div class="col-sm-2 days">
+          <h5>Thu</h5>
+          <img src="images/partly-cloudy.gif" class="days-icons" />
+          <div class="row">
+            <div class="col-md-6">
+              <strong class="temp-days">11°</strong>
+            </div>
+            <div class="col-md-6 temp-days">8°</div>
+          </div>
+        </div>
+        <div class="col-sm-2 days">
+          <h5>Fri</h5>
+          <img src="images/torrential-rain.gif" class="days-icons" />
+          <div class="row">
+            <div class="col-md-6">
+              <strong class="temp-days">11°</strong>
+            </div>
+            <div class="col-md-6 temp-days">3°</div>
+          </div>
+        </div>
+        <div class="col-sm-2 days">
+          <h5>Sat</h5>
+          <img src="images/torrential-rain.gif" class="days-icons" />
+          <div class="row">
+            <div class="col-md-6">
+              <strong class="temp-days">9°</strong>
+            </div>
+            <div class="col-md-6 temp-days">8°</div>
+          </div>
+        </div>
+        <div class="col-sm-2 days" id="last-day">
+          <h5>Sun</h5>
+          <img src="images/torrential-rain.gif" class="days-icons" />
+
+          <div class="row">
+            <div class="col-md-6">
+              <strong class="temp-days">12°</strong>
+            </div>
+            <div class="col-md-6 temp-days">7°</div>
+          </div>
+        </div>
+        <div class="col-sm-1"></div>
+      </div>
+      <div id="theCoder">coded by : yasamin hosseinzadeh sani</div>
+    </div>
+  </body>
+</html>

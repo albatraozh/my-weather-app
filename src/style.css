@@ -1,0 +1,101 @@
+body {
+  background: linear-gradient(to top, #d9afd9 0%, #97d9e1 100%);
+  background-repeat: no-repeat;
+}
+
+.app {
+  margin: 85px;
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: inset;
+  padding: 20px 40px;
+  border-radius: 10px;
+}
+
+.second-col {
+  border-left: solid 2px rgba(0, 0, 0, 0.1);
+  border-right: solid 2px rgba(0, 0, 0, 0.1);
+}
+.city-info {
+  margin-bottom: 30px;
+}
+.first-col-p {
+  margin-bottom: 0;
+}
+
+h2,
+h5 {
+  line-height: 1 !important;
+}
+
+.head-img {
+  width: 50%;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+}
+
+.temp {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+#temp {
+  text-align: left;
+  font-size: 35px;
+  font-weight: bold;
+}
+#temp-transfer {
+  position: relative;
+  top: -20px;
+}
+.temp-days {
+  text-align: center;
+  font-size: 15px;
+}
+
+.btn {
+  float: right;
+  border-radius: 30px !important;
+}
+.btn-success {
+  background-color: darkslateblue !important;
+  border: darkslateblue !important;
+}
+
+input {
+  border-radius: 30px !important;
+}
+.days {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  border-left: solid 2px rgba(0, 0, 0, 0.1);
+}
+.days-icons {
+  width: 55%;
+  margin-bottom: 10px;
+}
+#last-day {
+  border-right: solid 2px rgba(0, 0, 0, 0.1);
+}
+#theCoder {
+  text-align: center;
+  margin-top: 25px;
+  font-family: "Dancing Script", cursive;
+  font-size: 20px;
+}
+
+.isDisabled {
+  color: currentColor;
+  cursor: not-allowed;
+  font-weight: bold;
+  text-decoration: none;
+}
+a.cLink:hover,
+a.fLink:hover {
+  text-decoration: none;
+}
+a.fLink,
+a.cLink {
+  font-weight: bold;
+}
