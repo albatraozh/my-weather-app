@@ -20,15 +20,17 @@ let allIcons = [
   "thunderstorm",
   "drizzle",
 ];
+
 // api
 let apiKey = "a94ab690eaf15d9347e2d7ea11287c43";
 let firstApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=london&appid=${apiKey}&units=metric`;
 axios.get(firstApiUrl).then(showWeather);
 
 function showWeather(response) {
-  document.querySelector("span#temp").innerHTML = Math.round(
+  document.querySelector("span#temp").innerHTML = `${Math.round(
     response.data.main.temp
-  );
+  )}°`;
+  mainCtemp = response.data.main.temp;
   document.querySelector("#description").innerHTML =
     response.data.weather[0].description.charAt(0).toUpperCase() +
     response.data.weather[0].description.slice(1);
@@ -40,19 +42,21 @@ function showWeather(response) {
   document.querySelector("#max-temp").innerHTML = `${Math.round(
     response.data.main.temp_max
   )}°`;
+  maxMainTemp = response.data.main.temp_max;
   document.querySelector("#min-temp").innerHTML = `${Math.round(
     response.data.main.temp_min
   )}°`;
+  minMainTemp = response.data.main.temp_min;
 
   //change main icon
 
   let headImg = document.querySelector("div img.head-img");
-  let mainn = response.data.weather[0].main.toLowerCase();
-  let des = response.data.weather[0].description.toLowerCase();
+  let mainWeather = response.data.weather[0].main.toLowerCase();
+  let descriptionWeather = response.data.weather[0].description.toLowerCase();
   for (let i = 0; i < allIcons.length; i++) {
-    if (des.localeCompare(allIcons[i]) === 0) {
+    if (descriptionWeather.localeCompare(allIcons[i]) === 0) {
       headImg.src = `images/${allIcons[i]}.gif`;
-    } else if (mainn.localeCompare(allIcons[i]) === 0) {
+    } else if (mainWeather.localeCompare(allIcons[i]) === 0) {
       headImg.src = `images/${allIcons[i]}.gif`;
     } else if (response.data.weather[0].icon === "50n") {
       headImg.src = `images/mist.gif`;
@@ -117,35 +121,45 @@ findMyCity.addEventListener("click", function (event) {
   }
 });
 
-//changing C and F
+//changing C and F main temp
 
 let fLink = document.querySelector("a.fLink");
 let cLink = document.querySelector("a.cLink");
 cLink.classList.add("isDisabled");
 
-let temp = document.querySelectorAll(
-  "span#temp,div.temp,div.temp-days,div strong.temp-days"
-);
-
 function changeF(event) {
   event.preventDefault();
 
-  for (var i = 0; i < temp.length; i++) {
-    temp[i].innerHTML = parseInt(temp[i].innerHTML);
-    temp[i].innerHTML = `${Math.round((temp[i].innerHTML * 9) / 5 + 32)}°`;
-  }
+  FchangeFormula("span#temp", mainCtemp);
+  FchangeFormula("#max-temp", maxMainTemp);
+  FchangeFormula("#min-temp", minMainTemp);
+
   fLink.classList.add("isDisabled");
   cLink.classList.remove("isDisabled");
 }
+
 fLink.addEventListener("click", changeF);
 
 function changeC(event) {
   event.preventDefault();
-  for (var i = 0; i < temp.length; i++) {
-    temp[i].innerHTML = parseInt(temp[i].innerHTML);
-    temp[i].innerHTML = `${Math.round(((temp[i].innerHTML - 32) * 5) / 9)}°`;
-  }
+
+  CchangeFormula("span#temp", mainCtemp);
+  CchangeFormula("#max-temp", maxMainTemp);
+  CchangeFormula("#min-temp", minMainTemp);
+
   cLink.classList.add("isDisabled");
   fLink.classList.remove("isDisabled");
 }
 cLink.addEventListener("click", changeC);
+
+let mainCtemp = null;
+let maxMainTemp = null;
+let minMainTemp = null;
+
+function FchangeFormula(place, temp) {
+  let Fweather = (temp * 9) / 5 + 32;
+  document.querySelector(place).innerHTML = `${Math.round(Fweather)}°`;
+}
+function CchangeFormula(place, temp) {
+  document.querySelector(place).innerHTML = `${Math.round(temp)}°`;
+}
