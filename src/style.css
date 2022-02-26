@@ -78,7 +78,7 @@ input {
   margin-bottom: 10px;
 }
 #last-day {
-  border-right: solid 2px rgba(0, 0, 0, 0.1);
+  border-left: solid 2px rgba(0, 0, 0, 0.1);
 }
 #theCoder {
   text-align: center;

@@ -118,6 +118,33 @@ function FchangeFormula(place, temp) {
 function CchangeFormula(place, temp) {
   document.querySelector(place).innerHTML = `${Math.round(temp)}°`;
 }
+//displaying forecast function
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let days = ["sat", "sun", "mon", "tue", "wed"];
+  let forecastHTML = `<div class="row">
+        <div class="col-1"></div>`;
+
+  days.forEach(function () {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-2 days">
+            <h5>Wed</h5>
+            <img src="images/shower rain.gif" class="days-icons" />
+            <div class="row">
+              <div class="col-6">
+                <strong class="temp-days">15°</strong>
+              </div>
+              <div class="col-6 temp-days">7°</div>
+            </div>
+          </div>`;
+  });
+  forecastHTML =
+    forecastHTML +
+    `<div class="col-1" id="last-day"></div>
+      </div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
 /////////////// api
 let apiKey = "a94ab690eaf15d9347e2d7ea11287c43";
 let firstApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=london&appid=${apiKey}&units=metric`;
@@ -151,7 +178,6 @@ let findMyCity = document.querySelector(".my-city");
 findMyCity.addEventListener("click", findMyLoc);
 
 //changing C and F main temp
-
 let fLink = document.querySelector("a.fLink");
 let cLink = document.querySelector("a.cLink");
 cLink.classList.add("isDisabled");
@@ -163,3 +189,4 @@ cLink.addEventListener("click", changeC);
 let mainCtemp = null;
 let maxMainTemp = null;
 let minMainTemp = null;
+displayForecast();
