@@ -18,6 +18,7 @@ let allIcons = [
   "shower rain",
   "snow",
   "thunderstorm",
+  "drizzle",
 ];
 // api
 let apiKey = "a94ab690eaf15d9347e2d7ea11287c43";
