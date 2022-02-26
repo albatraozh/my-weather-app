@@ -7,6 +7,18 @@ let allDays = [
   "Friday ",
   "Saturday ",
 ];
+let allIcons = [
+  "clear sky",
+  "clouds",
+  "few clouds",
+  "haze",
+  "heavy snow",
+  "mist",
+  "rain",
+  "shower rain",
+  "snow",
+  "thunderstorm",
+];
 // api
 let apiKey = "a94ab690eaf15d9347e2d7ea11287c43";
 let firstApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=london&appid=${apiKey}&units=metric`;
@@ -30,6 +42,19 @@ function showWeather(response) {
   document.querySelector("#min-temp").innerHTML = `${Math.round(
     response.data.main.temp_min
   )}°`;
+
+  //change main icon
+
+  let headImg = document.querySelector("div img.head-img");
+  let mainn = response.data.weather[0].main.toLowerCase();
+  let des = response.data.weather[0].description.toLowerCase();
+  for (let i = 0; i < allIcons.length; i++) {
+    if (des.localeCompare(allIcons[i]) === 0) {
+      headImg.src = `images/${allIcons[i]}.gif`;
+    } else if (mainn.localeCompare(allIcons[i]) === 0) {
+      headImg.src = `images/${allIcons[i]}.gif`;
+    }
+  }
 }
 //showing the time
 let now = new Date();
