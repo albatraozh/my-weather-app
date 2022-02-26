@@ -53,6 +53,8 @@ function showWeather(response) {
       headImg.src = `images/${allIcons[i]}.gif`;
     } else if (mainn.localeCompare(allIcons[i]) === 0) {
       headImg.src = `images/${allIcons[i]}.gif`;
+    } else if (response.data.weather[0].icon === "50n") {
+      headImg.src = `images/mist.gif`;
     }
   }
 }
