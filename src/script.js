@@ -21,6 +21,11 @@ let allIcons = [
   "drizzle",
 ];
 //////////////////////// all functions
+function getForecast(coordinates) {
+  let apiKey = "a94ab690eaf15d9347e2d7ea11287c43";
+  let forecastUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(forecastUrl).then(displayForecast);
+}
 function showWeather(response) {
   document.querySelector("span#temp").innerHTML = `${Math.round(
     response.data.main.temp
@@ -42,6 +47,8 @@ function showWeather(response) {
     response.data.main.temp_min
   )}°`;
   minMainTemp = response.data.main.temp_min;
+
+  getForecast(response.data.coord);
 
   //change main icon
 
@@ -119,31 +126,58 @@ function CchangeFormula(place, temp) {
   document.querySelector(place).innerHTML = `${Math.round(temp)}°`;
 }
 //displaying forecast function
-function displayForecast() {
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  console.log(forecast);
   let forecastElement = document.querySelector("#forecast");
-  let days = ["sat", "sun", "mon", "tue", "wed"];
+
   let forecastHTML = `<div class="row">
         <div class="col-1"></div>`;
 
-  days.forEach(function () {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col-2 days">
-            <h5>Wed</h5>
-            <img src="images/shower rain.gif" class="days-icons" />
+  forecast.forEach(function (forecastDay, index) {
+    if (index > 0 && index < 6) {
+      let forecastIcon;
+      let mainWeather = forecastDay.weather[0].main.toLowerCase();
+      let descriptionWeather = forecastDay.weather[0].description.toLowerCase();
+      for (let i = 0; i < allIcons.length; i++) {
+        if (descriptionWeather.localeCompare(allIcons[i]) === 0) {
+          forecastIcon = `images/${allIcons[i]}.gif`;
+        } else if (mainWeather.localeCompare(allIcons[i]) === 0) {
+          forecastIcon = `images/${allIcons[i]}.gif`;
+        } else if (forecastDay.weather[0].icon === "50n") {
+          forecastIcon = `images/mist.gif`;
+        }
+      }
+      forecastHTML =
+        forecastHTML +
+        `<div class="col-2 days">
+            <h5>${formatDay(forecastDay.dt)}</h5>
+            <img src="${forecastIcon}" class="days-icons" />
             <div class="row">
               <div class="col-6">
-                <strong class="temp-days">15°</strong>
+                <strong class="temp-days">${Math.round(
+                  forecastDay.temp.max
+                )}°</strong>
               </div>
-              <div class="col-6 temp-days">7°</div>
+              <div class="col-6 temp-days">${Math.round(
+                forecastDay.temp.min
+              )}°</div>
             </div>
           </div>`;
+    }
   });
   forecastHTML =
     forecastHTML +
     `<div class="col-1" id="last-day"></div>
       </div>`;
   forecastElement.innerHTML = forecastHTML;
+}
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  console.log(date);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
 }
 /////////////// api
 let apiKey = "a94ab690eaf15d9347e2d7ea11287c43";
@@ -189,4 +223,3 @@ cLink.addEventListener("click", changeC);
 let mainCtemp = null;
 let maxMainTemp = null;
 let minMainTemp = null;
-displayForecast();
