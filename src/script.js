@@ -98,6 +98,7 @@ function findMyLoc(event) {
     });
   }
 }
+/*
 function changeF(event) {
   event.preventDefault();
 
@@ -124,7 +125,7 @@ function FchangeFormula(place, temp) {
 }
 function CchangeFormula(place, temp) {
   document.querySelector(place).innerHTML = `${Math.round(temp)}°`;
-}
+}*/
 //displaying forecast function
 function displayForecast(response) {
   let forecast = response.data.daily;
@@ -210,7 +211,7 @@ submitCity.addEventListener("click", searchCity);
 let findMyCity = document.querySelector(".my-city");
 
 findMyCity.addEventListener("click", findMyLoc);
-
+/*
 //changing C and F main temp
 let fLink = document.querySelector("a.fLink");
 let cLink = document.querySelector("a.cLink");
@@ -223,3 +224,4 @@ cLink.addEventListener("click", changeC);
 let mainCtemp = null;
 let maxMainTemp = null;
 let minMainTemp = null;
+*/

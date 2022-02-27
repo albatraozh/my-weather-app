@@ -49,6 +49,7 @@ h5 {
 #temp-transfer {
   position: relative;
   top: -20px;
+  font-weight: bold;
 }
 .temp-days {
   text-align: center;
@@ -93,6 +94,7 @@ input {
   font-weight: bold;
   text-decoration: none;
 }
+/*
 a.cLink:hover,
 a.fLink:hover {
   text-decoration: none;
@@ -101,3 +103,4 @@ a.fLink,
 a.cLink {
   font-weight: bold;
 }
+*/
