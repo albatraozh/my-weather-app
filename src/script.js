@@ -30,6 +30,7 @@ function showWeather(response) {
   document.querySelector("span#temp").innerHTML = `${Math.round(
     response.data.main.temp
   )}°`;
+
   mainCtemp = response.data.main.temp;
   document.querySelector("#description").innerHTML =
     response.data.weather[0].description.charAt(0).toUpperCase() +
@@ -55,12 +56,22 @@ function showWeather(response) {
   let headImg = document.querySelector("div img.head-img");
   let mainWeather = response.data.weather[0].main.toLowerCase();
   let descriptionWeather = response.data.weather[0].description.toLowerCase();
+  let iconID = response.data.weather[0].id;
   for (let i = 0; i < allIcons.length; i++) {
     if (descriptionWeather.localeCompare(allIcons[i]) === 0) {
       headImg.src = `images/${allIcons[i]}.gif`;
     } else if (mainWeather.localeCompare(allIcons[i]) === 0) {
       headImg.src = `images/${allIcons[i]}.gif`;
-    } else if (response.data.weather[0].icon === "50n") {
+    } else if (
+      iconID === 711 ||
+      iconID === 731 ||
+      iconID === 741 ||
+      iconID === 751 ||
+      iconID === 761 ||
+      iconID === 762 ||
+      iconID === 771 ||
+      iconID === 781
+    ) {
       headImg.src = `images/mist.gif`;
     }
   }
@@ -78,7 +89,7 @@ function searchCity(event) {
     alert("please enter a city");
   }
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${input.value}&appid=${apiKey}&units=metric`;
-
+  console.log(apiUrl);
   axios.get(apiUrl).then(showWeather);
 
   input.value = "";
@@ -129,7 +140,6 @@ function CchangeFormula(place, temp) {
 //displaying forecast function
 function displayForecast(response) {
   let forecast = response.data.daily;
-  console.log(forecast);
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">
@@ -140,12 +150,23 @@ function displayForecast(response) {
       let forecastIcon;
       let mainWeather = forecastDay.weather[0].main.toLowerCase();
       let descriptionWeather = forecastDay.weather[0].description.toLowerCase();
+      let iconID = forecastDay.weather[0].id;
+
       for (let i = 0; i < allIcons.length; i++) {
         if (descriptionWeather.localeCompare(allIcons[i]) === 0) {
           forecastIcon = `images/${allIcons[i]}.gif`;
         } else if (mainWeather.localeCompare(allIcons[i]) === 0) {
           forecastIcon = `images/${allIcons[i]}.gif`;
-        } else if (forecastDay.weather[0].icon === "50n") {
+        } else if (
+          iconID === 711 ||
+          iconID === 731 ||
+          iconID === 741 ||
+          iconID === 751 ||
+          iconID === 761 ||
+          iconID === 762 ||
+          iconID === 771 ||
+          iconID === 781
+        ) {
           forecastIcon = `images/mist.gif`;
         }
       }
@@ -175,7 +196,6 @@ function displayForecast(response) {
 }
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
-  console.log(date);
   let day = date.getDay();
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   return days[day];
